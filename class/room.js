@@ -1,3 +1,5 @@
+const { rooms } = require("../data/world-data");
+
 class Room {
 
     constructor(name, description) {
@@ -43,12 +45,20 @@ class Room {
         return this.exits[direction];
     }
 
+    // Retrieves an item from a room by name
     getItemByName(name) {
+        let roomItem = this.items.filter(function(el) {
+            return el === name;
+        })
 
-        // Fill this in
+        let [retrievedItem] = roomItem;
+        return retrievedItem;
     }
-
 }
+
+
+
+/******************************************************** */
 
 module.exports = {
   Room,
