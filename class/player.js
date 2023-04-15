@@ -31,11 +31,18 @@ class Player {
         }
     }
 
+    // Picks up an item from a room into the player's inventory
     takeItem(itemName) {
+        // Find the item using find() from room.items & push to player inventory
+        let room = this.currentRoom;
+        let foundItem = room.items.find(item => item.name === itemName);
+        this.items.push(foundItem);        
 
-        // Fill this in
-
+        // find index of item and remove using splice
+        let itemIndex = room.items.findIndex(item => item.name === itemName);
+        currentRoom.items.splice(itemIndex, 1);
     }
+    
 
     dropItem(itemName) {
 
@@ -52,6 +59,14 @@ class Player {
         return itemArray[0];
     }
 }
+
+// let item = new Item("rock", "just a simple rock");
+// let room = new Room("Dining Room", "For eating");
+// let player = new Player("player", room);
+// room.items.push(item);
+// console.log(player.takeItem("rock"));
+
+/*************************************************************************************** */
 
 module.exports = {
   Player,
