@@ -47,9 +47,9 @@ class Player {
 
     }
 
-    getItemByName(name) {
-
-        // Fill this in
+    getItemByName(name) { // filter array of player's items down to one that has the same name
+        let itemArray = this.items.filter(item => name === item.name);
+        return itemArray[0];
     }
 }
 

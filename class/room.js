@@ -45,14 +45,9 @@ class Room {
         return this.exits[direction];
     }
 
-    // Retrieves an item from a room by name
+    // Retrieves an item from a room by name, using find() method on array of items
     getItemByName(name) {
-        let roomItem = this.items.filter(function(el) {
-            return el === name;
-        })
-
-        let [retrievedItem] = roomItem;
-        return retrievedItem;
+        return this.items.find(el => el.name === name);
     }
 }
 

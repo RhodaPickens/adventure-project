@@ -5,6 +5,13 @@ class Item {
   }
 }
 
+
+let item = new Item("rock", "just a simple rock");
+
+console.log(item.name);
+console.log(item.description);
+
+
 module.exports = {
   Item,
 };
