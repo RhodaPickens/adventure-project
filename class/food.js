@@ -1,7 +1,6 @@
+const {Item} = require("./item.js");
 
-// FILL THIS OUT
-
-class Food {
+class Food extends Item {
 
 }
 

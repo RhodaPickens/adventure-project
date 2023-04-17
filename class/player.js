@@ -1,3 +1,7 @@
+const {Room} = require("../class/room.js");
+const {Item} = require("../class/item.js");
+const {Food} = require("../class/food.js");
+
 class Player {
 
     constructor(name, startingRoom) {
@@ -34,24 +38,32 @@ class Player {
     // Picks up an item from a room into the player's inventory
     takeItem(itemName) {
         // Find the item using find() from room.items & push to player inventory
-        let room = this.currentRoom;
-        let foundItem = room.items.find(item => item.name === itemName);
-        this.items.push(foundItem);        
+        const item = this.currentRoom.getItemByName(itemName);
+        this.items.push(item);
 
-        // find index of item and remove using splice
-        let itemIndex = room.items.findIndex(item => item.name === itemName);
-        currentRoom.items.splice(itemIndex, 1);
+        // remove item from room by filtering items to those not matching item name
+        this.currentRoom.items = this.currentRoom.items.filter(next => next.name !== itemName);
     }
-    
 
+    // Drops an item the player is holding into their current room
     dropItem(itemName) {
+        //find the item in player inventory and push to room items
+        let retrievedItem = this.getItemByName(itemName);
+        this.currentRoom.items.push(retrievedItem);
 
-        // Fill this in
+        // Update player inventory by filtering items to those not matching item name
+        this.items = this.items.filter(next => next.name !== itemName);
     }
 
-    eatItem(itemName) {
-        // Fill this in
 
+    // food can be eaten by a player
+    eatItem(itemName) {
+        const item = this.getItemByName(itemName);
+        // checks if object attached to itemName is an instance of Food class
+        if (item instanceof Food) {
+            // creates new inventory with items that are not the food
+            this.items = this.items.filter(next => next.name !== itemName);
+        }
     }
 
     getItemByName(name) { // filter array of player's items down to one that has the same name
@@ -60,11 +72,6 @@ class Player {
     }
 }
 
-// let item = new Item("rock", "just a simple rock");
-// let room = new Room("Dining Room", "For eating");
-// let player = new Player("player", room);
-// room.items.push(item);
-// console.log(player.takeItem("rock"));
 
 /*************************************************************************************** */
 
